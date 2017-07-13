@@ -14,9 +14,7 @@ except Exception as e:
 while True:
 	# Grab query, then escape it
 	query = raw_input("Search for: ")
-	print query
 	query = urllib.quote_plus(query)
-	print query
 
 	foundIn = []
 	availableIn = []
