@@ -2,6 +2,7 @@ from pyquery import PyQuery as pq
 from lxml import etree
 import urllib
 import re
+import webbrowser
 
 # Load libraries
 try:
@@ -39,8 +40,16 @@ while True:
 		# Yes, I'm really going to Regex my way through a script tag
 		# Cause its simpler than anything else I can think of
 		regex = re.search(r'\"availableCopies\"\:(\d)', result("script:eq(0)").text())
-		if regex and regex.group(1) > 0:
+
+		if int(regex.group(1)) >= 1:
 			availableIn.append(library)
 
 	print "Found " + urllib.unquote_plus(query).decode('utf-8') + " in ", foundIn
 	print "Available in ", availableIn
+
+	openBrowser = raw_input("Open in browser? [y/n]: ")
+	if openBrowser is 'y':
+		if len(availableIn) > 0:
+			webbrowser.open("https://" + availableIn[0] + ".overdrive.com/search?query=" + query + "&format=audiobook-mp3&sortBy=relevance")
+		elif len(foundIn) > 0:
+			webbrowser.open("https://" + foundIn[0] + ".overdrive.com/search?query=" + query + "&format=audiobook-mp3&sortBy=relevance")
