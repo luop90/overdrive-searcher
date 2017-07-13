@@ -35,7 +35,7 @@ while True:
 
 		# Keep track of where it's available
 		# Yes, I'm really going to Regex my way through a script tag
-		# Cause its simpler than anything else I can think of
+		# Overdrive loads the results in an inline-script, and this is the simplest way of finding them
 		regex = re.search(r'\"availableCopies\"\:(\d)', result("script:eq(0)").text())
 
 		if int(regex.group(1)) >= 1:
