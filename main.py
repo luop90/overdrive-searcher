@@ -2,16 +2,17 @@ from pyquery import PyQuery as pq
 from lxml import etree
 import urllib
 
-# Load settings
+# Load libraries
 try:
-	settings = pq(filename="userdata/libraries.xml")
+	libraries = open("userdata/libraries.txt")
 except Exception as e:
 	print("No libraries found. Please run add_library.py first")
 	print e
 
 while True:
+	# Grab query, then escape it
 	query = raw_input("Search for: ")
 
-	for library in settings("library"):
-		print("Searching library", library.name)
-		result = pq(url=library.url)
+	for library in libraries:
+		print("Searching library", library)
+		result = pq(url="https://{library}.overdrive.com/search?query={query}")
