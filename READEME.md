@@ -1,7 +1,7 @@
 # Overdrive Searcher
 A simple python script to search all overdrive libraries you specify.
 
-Currently will only do audiobooks, since that's the only thing I use it for.
+Currently will only do audiobooks, since that's the only thing I use it for.  Feel free to edit lines `30`, `51`, and `53` to change this behavior.
 
 ## To Use
 1. Clone the repo
